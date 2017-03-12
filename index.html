@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+  <script type="text/javascript" src="script.js"></script>
+<title>MLB Menu</title>
+<script>
+  window.onload = function(){
+    var gameDate = getGameDate();
+    var gameDateconst = 'http://gdx.mlb.com/components/game/mlb/year_2016/month_05/day_20/master_scoreboard.json';
+    
+    var canvas = makeCanvas();
+    
+    fetchJSONFile(gameDate, function(json) {
+      var games = json.data.games.game;
+      var index = 1;
+      
+      for (var i in games) {
+        if(index === 5) {break;}
+        setImage(i, index, json);
+        setText(i, index, json);
+        index++;
+      }
+    });
+  };
+</script>
+</head>
+<body>
+<div class="container">
+  
+  <canvas id="img-canvas" width="1920" height="1080">
+    Please use a compatible browser.
+  </canvas>
+  
+  <div class="w3-container">
+    <div class="w3-card-12" style="width:15%" id="first">
+      <div class="w3-container w3-center">
+        <h4 id="head1"></h4>
+      </div>
+      <img src="" alt="error1" style="width:100%" id="pic1">
+      <div class="w3-container w3-center">
+        <p id="para1-1">N/A</p>
+        <p id="para2-1">N/A</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="w3-container">
+    <div class="w3-card-12" style="width:15%" id="second">
+      <div class="w3-container w3-center">
+        <h4 id="head2"></h4>
+      </div>
+      <img src="" alt="error2" style="width:100%" id="pic2">
+      <div class="w3-container w3-center">
+        <p id="para1-2">N/A</p>
+        <p id="para2-2">N/A</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="w3-container">
+    <div class="w3-card-12" style="width:15%" id="third">
+      <div class="w3-container w3-center">
+        <h4 id="head3"></h4>
+      </div>
+      <img src="" alt="error3" style="width:100%" id="pic3">
+      <div class="w3-container w3-center">
+        <p id="para1-3">N/A</p>
+        <p id="para2-3">N/A</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="w3-container">
+    <div class="w3-card-12" style="width:15%" id="fourth">
+      <div class="w3-container w3-center">
+        <h4 id="head4"></h4>
+      </div>
+      <img src="" alt="error4" style="width:100%" id="pic4">
+      <div class="w3-container w3-center">
+        <p id="para1-4">N/A</p>
+        <p id="para2-4">N/A</p>
+      </div>
+    </div>
+  </div>
+  
+</div>
+</body>
+</html>

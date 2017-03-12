@@ -1,0 +1,61 @@
+.container {
+  height: 100%;
+  min-height: 100%;
+}
+#img-canvas {
+  z-index: -1;
+  position: fixed;
+}
+
+h4 {
+  font-size: 12px;
+  color: white;
+}
+p {
+    font-size: 20px;
+    color: white;
+}
+
+#first{
+  position: fixed;
+  top: 50%;
+  left: 10%;
+  width: 20%;
+  height: 15%;
+  background-color: #4f5256;
+  opacity: 0.9;
+  box-shadow: 16px 20px 5px -7px rgba(143,143,143,0.3);
+}
+
+#second {
+  position: fixed;
+  top: 50%;
+  left: 30%;
+  width: 10%;
+  height: 10%;
+  background-color: #4f5256;
+  opacity: 0.9;
+  box-shadow: 16px 20px 5px -7px rgba(143,143,143,0.3);
+}
+
+#third {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 10%;
+  height: 10%;
+  background-color: #4f5256;
+  opacity: 0.9;
+  box-shadow: 16px 20px 5px -7px rgba(143,143,143,0.3);
+}
+
+#fourth {
+  position: fixed;
+  top: 50%;
+  left: 70%;
+  width: 10%;
+  height: 10%;
+  background-color: #4f5256;
+  opacity: 0.9;
+  box-shadow: 16px 20px 5px -7px rgba(143,143,143,0.3);
+}
