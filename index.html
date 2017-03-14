@@ -17,17 +17,7 @@
     
     fetchJSONFile(gameDate, function(json) {
       games = json.data.games.game;
-      var index = 1;
-      /*
-      for (var i in games) {
-        if(index === 5) {break;}
-        setImage(i, index, json);
-        setText(i, index, json);
-        index++;
-      }
-      */
-     
-     for (var i = 1; i <= 4; i++) {
+        for (var i = 1; i <= 4; i++) {
          setImage(+gameIndex % +games.length, i, json);
          setText(+gameIndex % +games.length, i, json);
          gameIndex = +gameIndex + +'1';
@@ -35,9 +25,6 @@
      document.getElementById("first").style.width = '18%';
      document.getElementById("first").style.height = '15%';
      document.getElementById("first").style.top = '48%';
-     
-     // gameIndex = +gameIndex - +'1';
-     //console.log(gameIndex);
     });
   };
 </script>
