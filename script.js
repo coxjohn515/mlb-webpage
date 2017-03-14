@@ -140,5 +140,8 @@ function checkKey (e) {
             onFocus(divArray[divIndex], divArray[divIndex-1]);
         }
     }
+    else if (e.keyCode === 78) {
+        window.onload();
+    }
 }
 
