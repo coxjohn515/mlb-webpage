@@ -52,7 +52,8 @@ function setImage (gameIndex,index, json) {
     pic.src = "no-thumbnail.jpg";
   }
   else {
-    pic.src = json.data.games.game[gameIndex].video_thumbnails.thumbnail["0"].content;
+    //pic.src = json.data.games.game[gameIndex].video_thumbnails.thumbnail["0"].content;
+    pic.src = urlExist(json.data.games.game[gameIndex].video_thumbnails.thumbnail["0"].content);
   }
 
 }
@@ -60,9 +61,17 @@ function setImage (gameIndex,index, json) {
 function setText (gameIndex,index,json) {
   var game = json.data.games.game[gameIndex];
   console.log("Entered into setText");
-  document.getElementById("head"+index).innerHTML = game.away_team_name + " @ " + game.home_team_name;
-  document.getElementById("para1-"+index).innerHTML = game.away_name_abbrev + " " + game.linescore.r.away + " - " + game.home_name_abbrev + " " + game.linescore.r.home;
-  document.getElementById("para2-"+index).innerHTML = getStatus(gameIndex,index,json);
+  console.log(gameIndex);
+  if(game.status.status === "Preview") {
+    document.getElementById("head"+index).innerHTML = game.away_team_name + " @ " + game.home_team_name;
+    document.getElementById("para1-"+index).innerHTML = "Game Start Time: " + game.time + game.ampm;
+    document.getElementById("para2-"+index).innerHTML = "";
+  }
+  else {
+    document.getElementById("head"+index).innerHTML = game.away_team_name + " @ " + game.home_team_name;
+    document.getElementById("para1-"+index).innerHTML = game.away_name_abbrev + " " + game.linescore.r.away + " - " + game.home_name_abbrev + " " + game.linescore.r.home;
+    document.getElementById("para2-"+index).innerHTML = getStatus(gameIndex,index,json);
+  }
 }
 
 function getStatus(gameIndex,index,json) {
@@ -77,3 +86,59 @@ function getStatus(gameIndex,index,json) {
     return "Bot " + game.status.inning + " B:" + game.status.b + " S:" + game.status.s + " O:" + game.status.o;
   }
 }
+
+
+function urlExist (picUrl) {
+    var http = new XMLHttpRequest();
+    http.open('HEAD', picUrl);
+    http.send();
+    console.log("HTTP status: "+http.status)
+    if (http.readyState !== 404) {
+        console.log(picUrl);
+        return picUrl;
+    }
+    else {
+        console.log("no-thumbnail.jpg");
+        return "no-thumbnail.jpg";
+    }
+}
+divArray = ["first", "second", "third", "fourth"];
+divIndex = 0;
+function onFocus(next, prev) {
+        document.getElementById(next).style.width = '18%';
+        document.getElementById(next).style.height = '15%';
+        document.getElementById(next).style.top = '48%';
+        document.getElementById(next).style.opacity = '0.9';
+
+
+        document.getElementById(prev).style.width = '15%';
+        document.getElementById(prev).style.height = '10%';
+        document.getElementById(prev).style.top = '50%';
+        document.getElementById(prev).style.opacity = '0.4';
+}
+
+function checkKey (e) {
+    if (e.keyCode === 37) {
+        console.log("left key pressed");
+        if (divIndex === 0) {
+            // do nothing
+        }
+        else {
+            divIndex--;
+            console.log(divIndex);
+            onFocus(divArray[divIndex], divArray[divIndex+1]);
+        }
+    }
+    else if (e.keyCode === 39 ) {
+        console.log("right key pressed");
+        if (divIndex === 3) {
+            // do nothing
+        }
+        else {
+            divIndex++;
+            console.log(divIndex);
+            onFocus(divArray[divIndex], divArray[divIndex-1]);
+        }
+    }
+}
+
