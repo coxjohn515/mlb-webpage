@@ -90,10 +90,10 @@ function getStatus(gameIndex,index,json) {
 
 function urlExist (picUrl) {
     var http = new XMLHttpRequest();
-    http.open('HEAD', picUrl);
+    http.open('GET', picUrl);
     http.send();
     console.log("HTTP status: "+http.status)
-    if (http.readyState !== 404) {
+    if (http.status !== 404) {
         console.log(picUrl);
         return picUrl;
     }
@@ -109,7 +109,7 @@ function onFocus(next, prev) {
         document.getElementById(next).style.height = '15%';
         document.getElementById(next).style.top = '48%';
         document.getElementById(next).style.opacity = '0.9';
-
+        document.getElementById(next).style.transition = 'width 0.5s';
 
         document.getElementById(prev).style.width = '15%';
         document.getElementById(prev).style.height = '10%';
